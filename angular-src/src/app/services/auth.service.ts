@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
-// import { Http, Headers } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { User } from '../shared/user.model';
+
+let httpOptions = {
+  headers : new HttpHeaders({
+    'Content-Type':'application/json'
+})
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
 
-  // registerUser(user: User) {
-  //   let httpOptions = {
-  //     headers : new Headers({
-  //       'Content-Type':'application/json'
-  //     })
-  //   };
-  //   return this.http.post('http://localhost:3000/users/register', user, httpOptions).pipe()
-  // }
+  registerUser(user: User) {
+    let httpOptions = {
+      headers : new HttpHeaders({
+        'Content-Type' : 'application/json'
+      })
+    };
+    return this.http.post('http://localhost:3000/users/register', user, httpOptions );
+  }
 }

@@ -50,5 +50,5 @@ module.exports.authenticate = function(req, res, next) {
 }
 
 module.exports.profile = function(req, res, next) {
-    res.json({ success : true, message : 'Welcome, ' + req.user.name + "!", data : null});    
+    res.json({ success : true, message : 'Welcome, ' + req.user.name + "!", data : { name : req.user.name, email : req.user.email, username : req.user.username }});    
 }

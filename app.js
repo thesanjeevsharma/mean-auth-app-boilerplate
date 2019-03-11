@@ -4,6 +4,7 @@ const cors = require('cors');
 const path = require('path');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const logger = require('morgan');
 
 const dbconfig = require('./config/db.config');
 
@@ -29,6 +30,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
+app.use(logger('dev'));
 
 // ROUTING
 app.use('/users', usersRoute);
